@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* Reset margin and padding */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f9;
+            font-family: Arial, sans-serif;
+        }
+
+        .counter-container {
+            text-align: center;
+            border: 2px solid #333;
+            border-radius: 10px;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        button {
+            padding: 10px 20px;
+            margin: 5px;
+            font-size: 1rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #dd5fee;
+            color: white;
+        }
+
+        button:active {
+            background-color: #8a02a5;
+        }
+    </style>
+</head>
+<body>
+    <div class="counter-container">
+        <h1 id="counter">0</h1>
+        <button onclick="changeCounter(1)">Increase</button>
+        <button onclick="changeCounter(-1)">Decrease</button> 
+        <button onclick="resetCounter()">Reset</button>
+    </div>
+
+    <script>
+        let counter = 0;
+        function updateCounter(){
+            document.getElementById('counter').textContent = counter;
+        }
+
+        function changeCounter(a){
+            counter += a;
+            updateCounter();
+        }
+
+        function resetCounter(){
+            counter = 0;
+            updateCounter();
+        }
+    </script>
+</body>
+</html>

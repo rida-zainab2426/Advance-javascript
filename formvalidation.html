@@ -1,0 +1,131 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head>     
+    <meta charset="UTF-8">     
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">     
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">     
+    <title>Form Validation</title>     
+    <style>         
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center;
+        }
+        
+        h1 {
+            color: #333;
+        }
+        
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        
+        span {
+            color: red;
+            font-size: 14px;
+        }
+        
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        
+        button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head> 
+<body>     
+    <div class="container">
+        <h1>Registration Form</h1>
+        <form onsubmit="return validation()">
+            <input type="text" placeholder="Enter Your Name" id="user">
+            <span id="uerror"></span><br>
+            <input type="email" placeholder="Enter Your Email" id="email">
+            <span id="eerror"></span><br>
+            <input type="password" placeholder="Enter Your Password" id="pass">
+            <span id="perror"></span><br>
+            <input type="password" placeholder="Enter Your Confirm Password" id="cpass">
+            <span id="cperror"></span><br>
+            <input type="text" placeholder="Enter Your Mobile Number" id="mob">
+            <span id="moberror"></span><br>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+    
+    <script>
+        function validation() {
+            var user = document.getElementById("user").value;
+            var email = document.getElementById("email").value;
+            var pass = document.getElementById("pass").value;
+            var cpass = document.getElementById("cpass").value;
+            var mob = document.getElementById("mob").value;
+            
+            var usercheck = /^[A-Za-z. ]{3,}$/;
+            var emailcheck = /^[A-Za-z0-9_]{3,}@[A-Za-z]{3,}\.[A-Za-z]{2,3}$/;
+            var passcheck = /^(?=.*[A-Za-z])(?=.*[0-9])(?=.*[!@#$%^&*?~])[A-Za-z0-9!@#$$^&*]{8,}$/;
+            var mobcheck = /^[0-9]{11}$/;
+            
+            if (usercheck.test(user)) {
+                document.getElementById("uerror").innerHTML = "";
+            } else {
+                document.getElementById("uerror").innerHTML = "Invalid Username";
+                return false;
+            }
+            
+            if (emailcheck.test(email)) {
+                document.getElementById("eerror").innerHTML = "";
+            } else {
+                document.getElementById("eerror").innerHTML = "Invalid Email";
+                return false;
+            }
+            
+            if (passcheck.test(pass)) {
+                document.getElementById("perror").innerHTML = "";
+            } else {
+                document.getElementById("perror").innerHTML = "Password must contain at least 1 special character, 1 number, and be at least 8 characters long";
+                return false;
+            }
+            
+            if (cpass === pass) {
+                document.getElementById("cperror").innerHTML = "";
+            } else {
+                document.getElementById("cperror").innerHTML = "Passwords do not match";
+                return false;
+            }
+            
+            if (mobcheck.test(mob)) {
+                document.getElementById("moberror").innerHTML = "";
+            } else {
+                document.getElementById("moberror").innerHTML = "Invalid Mobile Number";
+                return false;
+            }
+        }
+    </script>
+</body> 
+</html>
